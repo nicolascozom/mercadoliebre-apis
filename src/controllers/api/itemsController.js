@@ -1,32 +1,39 @@
 // ******** Sequelize ***********
 
-// const { Product, Sequelize, Brand, Category } = require('../database/models');
-// const Op = Sequelize.Op;
+const { Item, Product, Brand, Category } = require('../../database/models');
 
 module.exports = {
-	index (req, res){
 
-        let respuesta = {
-                "meta": {
-                    "status": 201,
-                    "message": "Product added to cart"
-                },
-                "data": {
-                    "item": {
-                        "id": 126,
-                        "salePrice": 4968,
-                        "quantity": "1",
-                        "subTotal": 4968,
-                        "state": 1,
-                        "userId": 102,
-                        "sellerId": 101,
-                        "productId": 221,
-                        "updatedAt": "2020-10-01T19:36:24.590Z",
-                        "createdAt": "2020-10-01T19:36:24.590Z"
+    async list(req,res){
+
+        let items = await Item.findAll({
+            attributes: ['id', 'salePrice', 'quantity','subTotal','state','userId','sellerId','productId','updatedAt','createdAt']
+        })
+
+            .then(function(items){
+
+                let respuesta = {
+                    
+                    "meta": {
+                        "status": 201,
+                        "message": "Products in database"
+                    },
+                    "data": {
+                        items
                     }
-                }
-        }
 
-		res.json(respuesta)
+                };
+
+                res.json(respuesta)
+            })
+            
+    },
+
+    store(req,res){
+
+        Product.findByPk(req.params.id)
+            .then(product => res.json('products/detail', { product }))
+            .catch(e => console.log(e));
+
     }
 }

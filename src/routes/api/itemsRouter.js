@@ -3,8 +3,10 @@ const express = require('express');
 const router = express.Router();
 
 // ************ Controller Require ************
-const mainController = require('../../controllers/api/itemsController');
+const apiItemsController = require('../../controllers/api/itemsController');
 
-router.get('/', mainController.index); /* GET - principal */
+router.get('/', apiItemsController.list); /* GET - principal */
+
+router.post('/', apiItemsController.store) /* POST - principal */
 
 module.exports = router;
