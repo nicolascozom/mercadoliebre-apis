@@ -7,6 +7,7 @@ module.exports = {
     async list(req,res){
 
         let items = await Item.findAll({
+
             attributes: ['id', 'salePrice', 'quantity','subTotal','state','userId','sellerId','productId','updatedAt','createdAt']
         })
 
@@ -29,32 +30,44 @@ module.exports = {
             
     },
 
-    find(req,res){
+    find (req,res){
 
         Item.findByPk(req.params.id)
             .then(item => res.json(item))
             .catch(e => console.log(e));
     },
 
-    store(req,res){
-		
-        const _body = req.body;
-        _body.id = Number(req.body.id);
-        _body.salePrice = Number(req.body.salePrice);
-        _body.quantity = Number(req.body.quantity);
-        _body.subTotal = Number(req.body.subTotal);
-        _body.state = Number(req.body.state);
-        _body.productId = Number(req.body.productId);
-        _body.userId = Number(req.body.userId);
-        _body.sellerId = Number(req.body.sellerId);
-        _body.cartId = Number(req.body.cartId);
-        _body.createdAt = req.body.createdAt;
-        _body.updatedAt = req.body.updatedAt;
+    store(req,res){      
+        
 
-        Item.create(_body)
+        Item.create({            
+
+            id : req.body.id,
+            salePrice : Number(req.body.salePrice),
+            quantity : Number(req.body.quantity),
+            subTotal : Number(req.body.subTotal),
+            state : Number(req.body.state),
+            productId : Number(req.body.productId),
+            userId : Number(req.body.userId),
+            sellerId : Number (req.body.sellerID),
+            // cartId : Number (req.body.cartId),
+            updatedAt : req.body.updatedAt,
+            createdAt : req.body.createdAt,
+            
+        }
+        )
+
             .then(item => {
 
-                return res.json(item)
+                return res.json({
+                    "meta": {
+                        "status": 201,
+                        "message": "Product added to cart"
+                    },
+                    "data": {
+                        item
+                    }
+                })
             })
             .catch(e => console.log(e));
 		

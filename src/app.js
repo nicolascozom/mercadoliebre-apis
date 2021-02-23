@@ -43,12 +43,14 @@ app.use(helpersMiddleware);
 const mainRouter = require('./routes/mainRouter'); // Rutas main
 const productsRouter = require('./routes/productsRouter'); // Rutas /products
 const usersRouter = require('./routes/usersRouter'); // Rutas /user
-const apiRouter = require('./routes/api/itemsRouter'); //Rutas /api
+const apiItemsRouter = require('./routes/api/itemsRouter'); //Rutas /api /items
 
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
 app.use('/users', usersRouter);
-app.use('/api', apiRouter)
+
+// ************ API ROUTERS ************
+app.use('/api/items', apiItemsRouter)
 
 // ************ DON'T TOUCH FROM HERE ************
 // ************ catch 404 and forward to error handler ************

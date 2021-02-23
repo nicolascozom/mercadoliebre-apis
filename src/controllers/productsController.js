@@ -59,8 +59,8 @@ module.exports = {
 			_body.discount = Number(req.body.discount);
 			_body.image = req.file.filename;
 			_body.userId = req.session.user.id;
-			_body.categoryId = Number(req.body.category);
-			_body.brandId = Number(req.body.brand);
+			_body.categoryId = Date(req.body.category);
+			_body.brandId = Date(req.body.brand);
 
 			Product.create(_body)
 				.then(product => {
