@@ -1,13 +1,13 @@
 // ******** Sequelize ***********
 
-const { Item, Product, Brand, Category } = require('../../database/models');
+const { Item } = require('../../database/models');
 
 module.exports = {
 
     async list(req,res){
 
         let items = await Item.findAll({
-
+            // include: [{association: "users"}], -- NO ES NECESARIO
             attributes: ['id', 'salePrice', 'quantity','subTotal','state','userId','sellerId','productId','updatedAt','createdAt']
         })
 
@@ -27,6 +27,7 @@ module.exports = {
 
                 res.json(respuesta)
             })
+            .catch(e => console.log(e));
             
     },
 
@@ -49,16 +50,10 @@ module.exports = {
             state : Number(req.body.state),
             productId : Number(req.body.productId),
             userId : Number(req.body.userId),
-            sellerId: Number(req.body.sellerId),
+            sellerId: Number(req.body.userId),
             // cartId : Number (req.body.cartId),
-            updatedAt : Date(req.body.updatedAt),
-            createdAt : Date(req.body.createdAt),
-
-            //userId : Number(req.session.user.id),
-            //sellerId: Number(product.user.id),
-            // cartId : Number (req.body.cartId),
-            //updatedAt : Date(req.body.updatedAt),
-            //createdAt : Date(req.body.createdAt),
+            // updatedAt : Date(req.body.updatedAt),
+            // createdAt : Date(req.body.createdAt),
             
         }
         )

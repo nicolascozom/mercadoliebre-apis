@@ -2,6 +2,7 @@ window.onload = function () {
     
     let form = document.getElementById("addToCart");
     let quantity = document.getElementById("quantity")
+    let productId = document.getElementById("productId");
 
     //let button = document.getElementById("submitButton");
 
@@ -10,7 +11,7 @@ window.onload = function () {
     form.addEventListener("submit",function(e){
 
         axios.post('http://localhost:3000/api/items',{
-            
+
             data: {
                 id:91,
                 salePrice:1000,
