@@ -215,7 +215,7 @@ module.exports = {
             salePrice: price,
             quantity: req.body.quantity,
             subTotal: price * req.body.quantity,
-            state: 1,
+            state: 0,
             userId: req.session.user.id,
             sellerId: product.user.id,
             productId: product.id,

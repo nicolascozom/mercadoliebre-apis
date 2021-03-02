@@ -1,6 +1,6 @@
 // ******** Sequelize ***********
 
-const { Item } = require('../../database/models');
+const { Item, Product } = require('../../database/models');
 
 module.exports = {
 
@@ -40,23 +40,28 @@ module.exports = {
 
     store(req,res){      // --- PARA PRUEBAS POR POSTMAN, DEBE VENIR TODO POR REQ.BODY
         
-
-        Item.create({            
-
-            id : req.body.id,
-            salePrice : Number(req.body.salePrice),
-            quantity : Number(req.body.quantity),
-            subTotal : Number(req.body.subTotal),
-            state : Number(req.body.state),
-            productId : Number(req.body.productId),
-            userId : Number(req.session.user.id),
-            sellerId: Number(req.session.user.id),
-            // cartId : Number (req.body.cartId),
-            // updatedAt : Date(req.body.updatedAt),
-            // createdAt : Date(req.body.createdAt),
-            
-        }
-        )
+        Product.findByPk(req.body.productId, {
+            include: ["user"],
+          })
+            .then((product) => {
+              // Saco el valor del producto, teniendo en cuenta el descuento.
+    
+              let price =
+                Number(product.discount) > 0
+                  ? product.price - (product.price * product.discount) / 100
+                  : product.price;
+    
+              // Creo el Item de compra
+              return Item.create({
+                salePrice: price,
+                quantity: req.body.quantity,
+                subTotal: price * req.body.quantity,
+                state: 1,
+                userId: req.session.user.id,
+                sellerId: product.user.id,
+                productId: product.id,
+              });
+            })
 
             .then(item => {
 
