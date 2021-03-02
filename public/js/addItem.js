@@ -8,22 +8,32 @@ window.onload = function () {
 
     //let button = document.getElementById("submitButton");
 
-    console.log("Antes del addEventListener")
-
     form.addEventListener("submit",function(e){
 
         e.preventDefault();
 
         axios.post('http://localhost:3000/api/items',{
+
             productId: productId.value, 
             quantity: quantity.value,
             salePrice: salePrice.value,
             subTotal: subTotal.value
+        
+
+            
             
         })
         .then(function(res){
+            if (res.data.meta.status == 201){
+                console.log(res.data.meta.status)
+                window.location.href = "http://localhost:3000/users/cart"
+            }else{
+                console.log(res)
+            }
+            
             console.log(res)
         })
+        
         .catch(e => console.log(e));
     })
 }
@@ -33,3 +43,4 @@ window.onload = function () {
 //capturo sus datos
 //iniciar pedido de Axios por POST al endpoint api/items
 //si nos llega un status 201, redigirir a vista del carrito ??? exportando el método que busca esto y pidiendolo desde las rutas
+    //res.data.meta.status == 201
