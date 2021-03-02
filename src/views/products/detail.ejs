@@ -66,7 +66,9 @@
 								<input type="number" style="font-size: 14px;" id="quantity" name="quantity" value="1">
 								<p class="error"><%= typeof errors == 'undefined' ? '' : errors.quantity ? errors.quantity.msg : '' %></p>
 								<input type="hidden" id="productId" name="productId" value="<%= product.id %>">
-								<input type="hidden" id="salePrice" name="salePrice" value="<%= product.price %>">
+								<input type="hidden" id="salePrice" name="salePrice" value="<%= helpers.trunc(product.price - product.price * product.discount / 100) %>">
+								<input type="hidden" id="subTotal" name="subTotal" value="<%= product.price %>">
+								
 								<button id="submitButton" style="display: inline-block; width: 100%;" type="submit" class="mt-4 buy-now-button">AGREGAR AL CARRITO</button>
 							</form>
 							<hr>

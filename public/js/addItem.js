@@ -4,6 +4,7 @@ window.onload = function () {
     let quantity = document.getElementById("quantity")
     let productId = document.getElementById("productId");
     let salePrice = document.getElementById("salePrice");
+    let subTotal = document.getElementById("subTotal")
 
     //let button = document.getElementById("submitButton");
 
@@ -15,9 +16,9 @@ window.onload = function () {
 
         axios.post('http://localhost:3000/api/items',{
             productId: productId.value, 
-            quantity: quantity.value, 
-            userId: 102, 
-            salePrice: salePrice.value
+            quantity: quantity.value,
+            salePrice: salePrice.value,
+            subTotal: subTotal.value
             
         })
         .then(function(res){
