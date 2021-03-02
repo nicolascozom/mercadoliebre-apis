@@ -3,6 +3,7 @@ window.onload = function () {
     let form = document.getElementById("addToCart");
     let quantity = document.getElementById("quantity")
     let productId = document.getElementById("productId");
+    let salePrice = document.getElementById("salePrice");
 
     //let button = document.getElementById("submitButton");
 
@@ -10,22 +11,14 @@ window.onload = function () {
 
     form.addEventListener("submit",function(e){
 
+        e.preventDefault();
+
         axios.post('http://localhost:3000/api/items',{
-
-            data: {
-                id:91,
-                salePrice:1000,
-                quantity:1,
-                subTotal:2500,
-                state:0,
-                productId:18,
-                userId:10,
-                sellerID:10,
-                //cartId
-                updatedAt:"2020-06-18T04:08:40.000Z",
-                createdAt:"2020-06-18T04:08:21.000Z"
-
-            }
+            productId: productId.value, 
+            quantity: quantity.value, 
+            userId: 102, 
+            salePrice: salePrice.value
+            
         })
         .then(function(res){
             console.log(res)

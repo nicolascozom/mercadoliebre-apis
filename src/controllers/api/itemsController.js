@@ -38,7 +38,7 @@ module.exports = {
             .catch(e => console.log(e));
     },
 
-    store(req,res){      
+    store(req,res){      // --- PARA PRUEBAS POR POSTMAN, DEBE VENIR TODO POR REQ.BODY
         
 
         Item.create({            
@@ -49,8 +49,8 @@ module.exports = {
             subTotal : Number(req.body.subTotal),
             state : Number(req.body.state),
             productId : Number(req.body.productId),
-            userId : Number(req.body.userId),
-            sellerId: Number(req.body.userId),
+            userId : Number(req.session.user.id),
+            sellerId: Number(req.session.user.id),
             // cartId : Number (req.body.cartId),
             // updatedAt : Date(req.body.updatedAt),
             // createdAt : Date(req.body.createdAt),
