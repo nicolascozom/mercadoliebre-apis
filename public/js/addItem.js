@@ -31,8 +31,6 @@ window.onload = function () {
             }else{
                 console.log(res)
             }
-            
-            console.log(res)
         })
         
         .catch(e => console.log(e));
@@ -43,5 +41,4 @@ window.onload = function () {
 //capturo el formulario addToCart
 //capturo sus datos
 //iniciar pedido de Axios por POST al endpoint api/items
-//si nos llega un status 201, redigirir a vista del carrito ??? exportando el método que busca esto y pidiendolo desde las rutas
-    //res.data.meta.status == 201
+//si nos llega un status 201, redigirir a vista del carrito

@@ -9,6 +9,8 @@ router.get('/', apiItemsController.list); /* GET - principal */
 
 router.get('/:id', apiItemsController.find); /* GET - item por ID*/
 
-router.post('/', apiItemsController.store) /* POST - principal */
+router.post('/', apiItemsController.store) /* POST - agregar al carrito */
+
+router.delete('/', apiItemsController.destroy) /* DELETE - eliminar del carrito */
 
 module.exports = router;

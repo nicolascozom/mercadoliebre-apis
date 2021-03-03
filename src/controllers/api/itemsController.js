@@ -76,5 +76,29 @@ module.exports = {
                 })
             })
             .catch(e => console.log(e));
+    },
+
+    destroy(req,res){
+
+        Item.destroy({
+            where: {
+              id: req.body.itemId,
+            },
+            force: true,
+          })
+          .then(item => {
+
+            return res.json({
+                "meta": {
+                    "status": 201,
+                    "message": "Product deleted from cart"
+                },
+                "data": {
+                    item
+                }
+            })
+        })
+        .catch(e => console.log(e));
+
     }
 }
