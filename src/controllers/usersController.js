@@ -234,6 +234,7 @@ module.exports = {
   },
 
   deleteFromCart(req, res) {
+
     Item.destroy({
       where: {
         id: req.body.itemId,

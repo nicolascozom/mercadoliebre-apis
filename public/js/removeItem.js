@@ -11,12 +11,14 @@ window.onload = function () {
 
         axios.delete('http://localhost:3000/api/items',{
 
-            itemId: itemId.value
+            data:{
+                itemId: itemId.value
+            }
             
         })
         .then(function(res){
             if (res.data.meta.status == 200){
-                console.log("PRODUCTO ELIMINADO DEL CARRITO")
+                console.log(res.data.meta.status)
                 window.location.href = "http://localhost:3000/users/cart"
             }else{
                 console.log(res)

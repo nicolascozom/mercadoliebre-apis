@@ -12,18 +12,15 @@ window.onload = function () {
 
         e.preventDefault();
 
-
         axios.post('http://localhost:3000/api/items',{
 
             productId: productId.value, 
             quantity: quantity.value,
             salePrice: salePrice.value,
-            subTotal: subTotal.value
-        
+            subTotal: subTotal.value            
 
-            
-            
         })
+
         .then(function(res){
             if (res.data.meta.status == 201){
                 console.log(res.data.meta.status)

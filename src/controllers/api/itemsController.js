@@ -80,9 +80,10 @@ module.exports = {
 
     destroy(req,res){
 
-        // console.log(req)
+        console.log(req.body)
 
         Item.destroy({
+          
             where: {
                 id: Number(req.body.itemId),
               },
