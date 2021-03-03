@@ -80,24 +80,26 @@ module.exports = {
 
     destroy(req,res){
 
+        // console.log(req)
+
         Item.destroy({
             where: {
-              id: req.body.id,
-            },
+                id: Number(req.body.id),
+              },
+              force: true,
           })
-          .then(item => {
+            .then(item => {
 
-            return res.json({
-                "meta": {
-                    "status": 200,
-                    "message": "Product deleted from cart"
-                },
-                "data": {
-                    item
-                }
+                return res.json({
+                    "meta": {
+                        "status": 200,
+                        "message": "Product deleted from cart"
+                    },
+                    "data": {
+                        item
+                    }
+                })
             })
-        })
-        .catch(e => console.log(e));
-
+            .catch(e => console.log(e));  
     }
 }
