@@ -7,12 +7,11 @@ window.onload = function () {
 
     form.addEventListener("submit",function(e){
 
-        e.preventDefault();
+        e.preventDefault()
 
+        axios.delete('http://localhost:3000/api/items',{
 
-        axios.remove('http://localhost:3000/api/items',{
-
-            itemId: itemId.value, 
+            itemId: itemId.value
             
         })
         .then(function(res){

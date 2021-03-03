@@ -71,13 +71,7 @@ module.exports = {
                         "message": "Product added to cart"
                     },
                     "data": {
-                        salePrice: price,
-                        quantity: req.body.quantity,
-                        subTotal: price * req.body.quantity,
-                        state: 1,
-                        userId: req.session.user.id,
-                        sellerId: product.user.id,
-                        productId: product.id, 
+                        item
                     }
                 })
             })
@@ -88,9 +82,8 @@ module.exports = {
 
         Item.destroy({
             where: {
-              id: req.body.itemId,
+              id: req.body.id,
             },
-            force: true,
           })
           .then(item => {
 

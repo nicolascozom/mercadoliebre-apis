@@ -34,7 +34,7 @@
                      <section class="col-3">
                         <p>Cantidad: <%= item.quantity %></p>
                         <form id="removeFromCart" action="/users/deleteFromCart" method="POST" class="mt-4">
-                           <input type="hidden" name="itemId" value="<%= item.id %>">
+                           <input id="itemId" type="hidden" name="itemId" value="<%= item.id %>">
                            <button type="submit" class="action-button delete">ELIMINAR</button>
                         </form>
                      </section>
