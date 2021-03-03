@@ -71,7 +71,13 @@ module.exports = {
                         "message": "Product added to cart"
                     },
                     "data": {
-                        item
+                        salePrice: price,
+                        quantity: req.body.quantity,
+                        subTotal: price * req.body.quantity,
+                        state: 1,
+                        userId: req.session.user.id,
+                        sellerId: product.user.id,
+                        productId: product.id, 
                     }
                 })
             })
@@ -90,7 +96,7 @@ module.exports = {
 
             return res.json({
                 "meta": {
-                    "status": 201,
+                    "status": 200,
                     "message": "Product deleted from cart"
                 },
                 "data": {
