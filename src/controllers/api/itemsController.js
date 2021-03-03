@@ -84,7 +84,7 @@ module.exports = {
 
         Item.destroy({
             where: {
-                id: Number(req.body.id),
+                id: Number(req.body.itemId),
               },
               force: true,
           })
